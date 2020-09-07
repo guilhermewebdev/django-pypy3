@@ -1,6 +1,6 @@
 FROM pypy:3
 
-WORKDIR /usr/share/django
+WORKDIR /var/www/django
 
 RUN pip install --upgrade pip; \
     mkdir /var/lib/django; \
@@ -8,8 +8,8 @@ RUN pip install --upgrade pip; \
 
 COPY . .
 
-RUN chmod -R 740 /usr/share/django/; \
-    chown -R django:django /usr/share/django/; \
+RUN chmod -R 740 /var/www/django/; \
+    chown -R django:django /var/www/django/; \
     chown -R django:django /var/lib/django; \
     chmod -R 740 /var/lib/django/;
 
