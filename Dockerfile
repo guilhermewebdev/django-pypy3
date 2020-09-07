@@ -14,7 +14,10 @@ USER django
 
 ENV PATH /var/lib/django/.local/bin:$PATH
 
-RUN pip install Django --user; \
-    django-admin startproject app .
+RUN pip install Django --user;
+
+RUN django-admin startproject -v 3 app .;
 
 CMD [ "pypy3", "manage.py", "runserver", "0.0.0.0:8000" ]
+
+VOLUME [ "/var/www/django" ]
