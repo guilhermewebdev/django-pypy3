@@ -1,13 +1,16 @@
 FROM pypy:3
 
+WORKDIR /usr/share/django
+
 RUN pip install --upgrade pip; \
-    useradd -U -d /var/lib/django django; \
-    mkdir /usr/share/django; 
+    mkdir /var/lib/django; \
+    useradd -U -d /var/lib/django django; 
 
-COPY . /usr/share/django/
+COPY . .
 
-RUN chmod -R 540 /usr/share/django/; \
+RUN chmod -R 740 /usr/share/django/; \
     chown -R django:django /usr/share/django/; \
+    chown -R django:django /var/lib/django; \
     chmod -R 740 /var/lib/django/;
 
 USER django
